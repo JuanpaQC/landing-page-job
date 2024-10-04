@@ -1,0 +1,203 @@
+.apply-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.apply-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.apply-form input,
+.apply-form select,
+.apply-form textarea {
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s;
+}
+
+.apply-form input:focus,
+.apply-form select:focus,
+.apply-form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.apply-form textarea {
+  height: 100px;
+  resize: none;
+}
+
+/* Estilos para el input de archivo (Choose file) */
+.apply-form input[type="file"] {
+  padding: 10px;
+  background-color: #f0f0f0;
+  color: #007bff;
+  border: 2px dashed #007bff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.apply-form input[type="file"]:hover {
+  background-color: #e0e0e0;
+  border-color: #0056b3;
+}
+
+/* Placeholder for the uploaded file name */
+.apply-form .file-name {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.submit-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.consent-checkbox {
+  margin-bottom: 20px;
+}
+
+.resume-label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* Improved styling for select dropdown */
+.apply-form select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: white url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="gray"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>') no-repeat right 10px center;
+  background-size: 12px;
+  padding-right: 35px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s;
+}
+
+.apply-form select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Custom styling for checkbox */
+.apply-form input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+/* Contenedor general del campo de archivo */
+.apply-form .file-upload-wrapper {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  border: 2px dashed #007bff;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  cursor: pointer;
+  color: #007bff;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Oculta el input de archivo original */
+.apply-form input[type="file"] {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+/* Estilos del label que reemplaza al botón original */
+.apply-form .file-upload-label {
+  font-size: 14px;
+  color: #007bff;
+  cursor: pointer;
+}
+
+/* Nombre del archivo seleccionado */
+.apply-form .file-name {
+  font-size: 14px;
+  color: #555;
+  margin-left: 10px;
+}
+
+/* Hover y cambios de estado */
+.apply-form .file-upload-wrapper:hover {
+  background-color: #e0e0e0;
+  border-color: #0056b3;
+}
+
+.upload-text {
+  margin-top: 6px;
+  margin-bottom: 2px;
+  font-size: 18px;
+  color: #555;
+  text-align: left;
+}
+
+.consent-checkbox label {
+  margin-top: 20px;
+  font-size: 12px;
+}
+
+/* Contenedor de subida de archivos */
+.file-upload-wrapper {
+  border: 2px dashed #007bff; /* Refuerza el color del borde */
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  transition: border-color 0.3s ease;
+  cursor: pointer;
+  margin-bottom: 20px;
+  display: flex; /* Alinea icono y texto */
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hover */
+.file-upload-wrapper:hover {
+  border-color: #0056b3; /* Color de borde al pasar el mouse */
+}
+
+.active-dropzone {
+  border-color: #0056b3;
+}
+
+/* Estilos para el icono */
+.upload-icon {
+  margin-right: 10px; /* Espacio entre icono y texto */
+  font-size: 24px;
+  color: #007bff;
+}
+
+
+.drop-text {
+  font-size: 16px;
+  color: #0056b3;
+}
+
+.file-name {
+  font-size: 14px;
+  color: #555;
+  margin-top: 10px;
+}

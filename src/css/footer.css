@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+.footer {
+  background-color: #fff;
+  padding: 20px 40px;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-dev, .footer-rights {
+  font-size: 14px;
+  color: #333;
+}
+
+.footer-social {
+  display: flex;
+  gap: 20px;
+}
+
+.social-link {
+  font-size: 16px;
+  color: #333;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-link:hover {
+  transform: translateY(-2px);
+}
+
+.social-link::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #007BFF;
+  transition: width 0.3s ease;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+}
+
+.social-link:hover::after {
+  width: 100%;
+}
+
+.instagram-link:hover {
+  color: transparent; /* Para que no interfiera con el gradiente de fondo */
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: instagram-colors 1s linear infinite;
+}
+
+.facebook-link:hover{
+  color: #007BFF;
+  background: linear-gradient(45deg, #007BFF);
+  background-clip: text;
+  animation: instagram-colors 1s linear infinite;
+}
+
+@keyframes instagram-colors {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
