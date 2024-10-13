@@ -70,8 +70,7 @@ const JobSection = ({ aboutUsRef, contactUsRef }) => {
             </p>
             <ul>
               <li>Driver License.</li>
-              <li>Speak fluent English.</li>
-              <li>Have a van in case you don't (you have to rent one).</li>
+              <li>Vehicle is preferred (van, suv truck).</li>
               <li>Employment for people with or without experience.</li>
               <li>Have your own worker compensation.</li>
               <li>Availability to travel between states and cities.</li>
