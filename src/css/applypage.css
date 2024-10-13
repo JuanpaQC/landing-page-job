@@ -1,3 +1,12 @@
+/* Ajuste general para evitar desbordamientos */
+.apply-container, 
+.apply-form input, 
+.apply-form select, 
+.apply-form textarea, 
+.apply-form .file-upload-wrapper {
+  box-sizing: border-box; /* Asegura que el padding no cause desbordamiento */
+}
+
 .apply-container {
   max-width: 600px;
   margin: 0 auto;
@@ -35,6 +44,7 @@
 
 /* Estilos para el input de archivo (Choose file) */
 .apply-form input[type="file"] {
+  margin-right: 40px;
   padding: 10px;
   background-color: #f0f0f0;
   color: #007bff;
@@ -106,18 +116,20 @@
 /* Contenedor general del campo de archivo */
 .apply-form .file-upload-wrapper {
   position: relative;
-  width: 100%;
-  height: 40px;
+  width: 100%; /* Asegura que ocupe el 100% del ancho del contenedor */
+  height: 100px; /* Ajuste de altura */
   border: 2px dashed #007bff;
   background-color: #f0f0f0;
   border-radius: 5px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 10px;
+  justify-content: center; /* Centrando el contenido */
+  padding: 10px; /* Ajustar padding para evitar desbordamientos */
   cursor: pointer;
   color: #007bff;
+  margin-bottom: 15px; /* Igualar margen con otros elementos */
   transition: background-color 0.3s, border-color 0.3s;
+  overflow: hidden; /* Evita el desbordamiento de contenido */
 }
 
 /* Oculta el input de archivo original */
@@ -127,24 +139,30 @@
   z-index: -1;
 }
 
-/* Estilos del label que reemplaza al botón original */
-.apply-form .file-upload-label {
-  font-size: 14px;
-  color: #007bff;
-  cursor: pointer;
-}
-
-/* Nombre del archivo seleccionado */
-.apply-form .file-name {
-  font-size: 14px;
-  color: #555;
-  margin-left: 10px;
-}
-
 /* Hover y cambios de estado */
 .apply-form .file-upload-wrapper:hover {
   background-color: #e0e0e0;
   border-color: #0056b3;
+}
+
+/* Estilos para el icono */
+.upload-icon {
+  margin-right: 10px;
+  font-size: 24px;
+  color: #007bff;
+}
+
+/* Texto de arrastre */
+.drop-text {
+  font-size: 16px;
+  color: #0056b3;
+}
+
+/* Nombre del archivo seleccionado */
+.file-name {
+  font-size: 14px;
+  color: #555;
+  margin-top: 10px;
 }
 
 .upload-text {
@@ -162,21 +180,21 @@
 
 /* Contenedor de subida de archivos */
 .file-upload-wrapper {
-  border: 2px dashed #007bff; /* Refuerza el color del borde */
+  border: 2px dashed #007bff;
   border-radius: 12px;
   padding: 20px;
   text-align: center;
   transition: border-color 0.3s ease;
   cursor: pointer;
   margin-bottom: 20px;
-  display: flex; /* Alinea icono y texto */
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 
 /* Hover */
 .file-upload-wrapper:hover {
-  border-color: #0056b3; /* Color de borde al pasar el mouse */
+  border-color: #0056b3;
 }
 
 .active-dropzone {
@@ -185,11 +203,10 @@
 
 /* Estilos para el icono */
 .upload-icon {
-  margin-right: 10px; /* Espacio entre icono y texto */
+  margin-right: 10px;
   font-size: 24px;
   color: #007bff;
 }
-
 
 .drop-text {
   font-size: 16px;
@@ -200,4 +217,41 @@
   font-size: 14px;
   color: #555;
   margin-top: 10px;
+}
+
+/* Media Query para pantallas pequeñas */
+@media (max-width: 768px) {
+  .apply-container {
+    max-width: 100%; /* Ocupa el 100% del ancho en pantallas pequeñas */
+    padding: 10px; /* Ajusta el padding para que no sea demasiado en móviles */
+  }
+
+  .apply-form input,
+  .apply-form select,
+  .apply-form textarea {
+    font-size: 14px; /* Reduce el tamaño de la fuente para mejorar la legibilidad */
+    padding: 8px; /* Reducir padding para adaptarse a pantallas pequeñas */
+  }
+
+  .submit-button {
+    font-size: 14px; /* Botón con fuente más pequeña */
+    padding: 8px; /* Padding reducido para el botón en móviles */
+  }
+
+  .file-upload-wrapper {
+    padding: 10px; /* Reduce padding para adaptarse a pantallas pequeñas */
+    height: auto; /* Permite que el contenedor se ajuste automáticamente a su contenido */
+  }
+
+  .drop-text {
+    font-size: 14px; /* Ajusta el tamaño del texto en el área de subida de archivos */
+  }
+
+  .file-name {
+    font-size: 12px; /* Reduce el tamaño del nombre de archivo */
+  }
+
+  .upload-icon {
+    font-size: 20px; /* Ajusta el tamaño del ícono para pantallas más pequeñas */
+  }
 }

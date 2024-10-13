@@ -35,8 +35,6 @@
   margin-right: 0; /* Elimina el margen adicional si es necesario */
 }
 
-
-
 @keyframes fadeInNavbar {
   to {
     opacity: 1;
@@ -106,3 +104,60 @@
   width: 100%;
 }
 
+/* Media Query para pantallas pequeñas */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Ajusta la disposición a columnas en lugar de filas */
+    padding: 10px; /* Reduce el padding para móviles */
+  }
+
+  .navbar-logo h1 {
+    font-size: 22px; /* Reduce el tamaño de la fuente del logo */
+  }
+
+  .logo {
+    width: 60px; /* Reduce el tamaño del logo en móviles */
+  }
+
+  .logo-small {
+    width: 90px; /* Ajusta el tamaño del logo secundario */
+  }
+
+  .navbar-links {
+    flex-direction: column; /* Pone los enlaces en una columna para móviles */
+    width: 100%; /* Ocupa el 100% del ancho */
+    align-items: center;
+    margin-top: 10px; /* Añade espacio entre el logo y los links */
+  }
+
+  .navbar-links li {
+    margin: 10px 0; /* Aumenta el espaciado entre los elementos del menú */
+  }
+
+  .navbar-links a {
+    font-size: 16px; /* Reduce el tamaño de la fuente de los enlaces */
+  }
+
+  .navbar {
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1); /* Reduce la sombra para que sea más sutil en móviles */
+  }
+}
+
+/* Media Query para pantallas muy pequeñas (menos de 480px) */
+@media (max-width: 480px) {
+  .navbar-logo h1 {
+    font-size: 18px; /* Reduce aún más el tamaño de la fuente del logo */
+  }
+
+  .logo {
+    width: 50px; /* Logo más pequeño para pantallas muy pequeñas */
+  }
+
+  .navbar-links a {
+    font-size: 14px; /* Tamaño más pequeño de los enlaces en pantallas muy pequeñas */
+  }
+
+  .navbar {
+    padding: 8px; /* Reduce aún más el padding en pantallas muy pequeñas */
+  }
+}
