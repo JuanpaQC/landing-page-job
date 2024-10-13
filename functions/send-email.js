@@ -28,6 +28,7 @@ exports.handler = async (event) => {
             <p>${message}</p>
             <hr style="margin: 20px 0; border-top: 1px solid #ccc;">
             <footer style="display: flex; align-items: center; font-size: 12px; color: #666;">
+                <img src="cid:companyLogo" alt="Company Logo" style="width: 50px; height: auto; margin-right: 10px;">
                 <div>
                     <p style="margin: 0; font-size: 14px; color: #333; font-weight: bold;">K Unlimited Corp Human Resources Team</p>
                     <p style="margin: 0; color: #555;">Email: <a href="mailto:corpkunlimited@gmail.com" style="color: #007bff; text-decoration: none;">corpkunlimited@gmail.com</a></p>
@@ -40,6 +41,11 @@ exports.handler = async (event) => {
         filename: fileName,
         content: resume,
         encoding: 'base64',
+      },
+      {
+        filename: 'logo.png', // Nombre del archivo de la imagen
+        path: 'https://imgur.com/89O7pdh.png', // Ruta local o remota a tu imagen
+        cid: 'companyLogo' // Este ID es usado para referenciar la imagen en el HTML
       }
     ],
   };
