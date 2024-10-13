@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 40px;
+  padding: 10px 20px; /* Reduce el padding para hacer más delgado el navbar */
   background-color: #fff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   position: sticky;
@@ -15,6 +15,27 @@
   transform: translateY(-20px);
   animation: fadeInNavbar 1s ease-in-out forwards;
 }
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  margin: 0; /* Elimina el margen alrededor de los logos */
+}
+
+.logo {
+  width: 75px; /* Tamaño base del logo */
+  height: auto;
+  margin-right: 2px; /* Ajusta el margen entre los logos */
+}
+
+.logo-small {
+  margin-top: 8px;
+  width: 120px; /* Ajusta el tamaño del logo más pequeño */
+  height: auto;
+  margin-right: 0; /* Elimina el margen adicional si es necesario */
+}
+
+
 
 @keyframes fadeInNavbar {
   to {
@@ -55,7 +76,7 @@
 
 .navbar-links a {
   font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   text-decoration: none;
   color: #333;

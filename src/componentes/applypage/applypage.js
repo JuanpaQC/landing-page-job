@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useDropzone } from 'react-dropzone';
-import emailjs from 'emailjs-com'; // Importa EmailJS
 import Navbar from '../navbar/navbar';
 import Footer from '../footer/footer';
+import SuccessModal from '../successmodal/successmodal'; // Importa el modal
 import '../../css/applypage.css';
 import data from '../../api/citieStatus.json'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCloudUploadAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const ApplyPage = () => {
   const [formData, setFormData] = useState({
@@ -25,6 +25,7 @@ const ApplyPage = () => {
   const [fileName, setFileName] = useState('');
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
+  const [showModal, setShowModal] = useState(false); // Estado para mostrar/ocultar el modal
 
   useEffect(() => {
     setStates(data.states.map(state => state.name));
@@ -52,24 +53,50 @@ const ApplyPage = () => {
     });
   };
 
-  // Función para enviar el formulario con EmailJS
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Enviar el formulario con EmailJS
-    emailjs.sendForm(
-      'service_cvkng8n', // Reemplaza con tu ID de servicio
-      'template_n5rtyf8', // Reemplaza con tu ID de plantilla
-      e.target, // Captura todos los datos del formulario
-      'AWSFz6vhdOnTbxIpj' // Reemplaza con tu ID de usuario de EmailJS
-    ).then((result) => {
-      console.log(result.text);
-      alert("Form sent successfully");
-    }, (error) => {
-      console.log(error.text);
-      alert("There was an error sending the form");
+  const handleFileRemove = (e) => {
+    e.stopPropagation();
+    setFileName('');
+    setFormData({
+      ...formData,
+      resume: null,
     });
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    const formDataToSend = {
+      ...formData,
+      fileName: fileName,
+      resume: await toBase64(formData.resume),
+    };
+  
+    try {
+      const response = await fetch('/.netlify/functions/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formDataToSend),
+      });
+  
+      if (response.ok) {
+        setShowModal(true); // Mostrar el modal si se envía con éxito
+      } else {
+        alert("There was an error sending the form");
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert("There was an error sending the form");
+    }
+  };
+
+  const toBase64 = (file) => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = (error) => reject(error);
+  });
 
   const onDrop = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -175,6 +202,7 @@ const ApplyPage = () => {
           <motion.div 
             {...getRootProps({ className: 'dropzone' })} 
             className={`file-upload-wrapper fade-in ${isDragActive ? 'active-dropzone' : ''}`}
+            style={{ position: 'relative' }}
           >
             <input {...getInputProps()} name="resume" />
             <div className="upload-icon">
@@ -182,6 +210,30 @@ const ApplyPage = () => {
             </div>
             <p className="drop-text">{isDragActive ? 'Drop the file here...' : 'Drag & Drop your resume here, or click to browse'}</p>
             <p className="file-name">{fileName && `Selected file: ${fileName}`}</p>
+            {fileName && (
+              <button 
+                type="button" 
+                className="remove-file-button" 
+                onClick={handleFileRemove}
+                style={{ 
+                  position: 'absolute', 
+                  top: '5px', 
+                  right: '5px', 
+                  background: 'red', 
+                  color: 'white', 
+                  border: 'none', 
+                  borderRadius: '50%', 
+                  cursor: 'pointer',
+                  width: '25px',
+                  height: '25px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                <FontAwesomeIcon icon={faTimes} />
+              </button>
+            )}
           </motion.div>
 
           <motion.div className="consent-checkbox fade-in">
@@ -198,6 +250,7 @@ const ApplyPage = () => {
         </motion.form>
       </div>
       <Footer />
+      <SuccessModal show={showModal} onClose={() => setShowModal(false)} />
     </motion.div>
   );
 };

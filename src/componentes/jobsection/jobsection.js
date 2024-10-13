@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Importar useNavigate
 import '../../css/jobsection.css';
 import instaladorImg from '../../imgs/instalador.jpg';
@@ -7,6 +7,20 @@ const JobSection = ({ aboutUsRef, contactUsRef }) => {
   const [isDetailsExpanded, setIsDetailsExpanded] = useState(false);
   const jobDetailsRef = useRef(null);
   const navigate = useNavigate(); // Hook para la navegación
+
+
+  const [daysAgo, setDaysAgo] = useState(0);
+
+  // Calcular los días desde la fecha de publicación
+  useEffect(() => {
+    const jobPostedDate = new Date('2024-10-13'); // Mover la declaración aquí
+    const currentDate = new Date();
+    const timeDifference = currentDate - jobPostedDate;
+    const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    setDaysAgo(daysDifference);
+  }, []); // El array de dependencias puede estar vacío si no cambian las fechas
+  
+  
 
   // Función para hacer scroll a los detalles del trabajo
   const handleMoreInfoClick = () => {
@@ -40,10 +54,10 @@ const JobSection = ({ aboutUsRef, contactUsRef }) => {
 
       <div className="job-details" ref={jobDetailsRef}>
         <h3>Fiber Optic Installer</h3>
-        <p>Full-time, San Francisco, California</p>
-        <p>Posted 2 days ago</p>
+        <p>Full-Time available only in the states of Connecticut, Pennsylvania, New York, Florida and Texas.</p>
+        <p>Posted {daysAgo} days ago</p> {/* Mostrar los días desde que fue publicado */}
         <p>
-          We are seeking a skilled and experienced Fiber Optic Installer to join our team...
+          We are seeking a Fiber Optic Installer to join our team......
         </p>
         {!isDetailsExpanded ? (
           <button className="read-more-button" onClick={handleReadMoreClick}>
@@ -55,9 +69,12 @@ const JobSection = ({ aboutUsRef, contactUsRef }) => {
               As a Fiber Optic Installer, you will install, test, and maintain fiber optic systems...
             </p>
             <ul>
-              <li>Experience with fiber optic installation</li>
-              <li>Knowledge of safety protocols</li>
-              <li>Ability to work in different environments</li>
+              <li>Driver License.</li>
+              <li>Speak fluent English.</li>
+              <li>Have a van in case you don't (you have to rent one).</li>
+              <li>Employment for people with or without experience.</li>
+              <li>Have your own worker compensation.</li>
+              <li>Availability to travel between states and cities.</li>
             </ul>
             <button className="apply-button" onClick={handleApplyClick}>
               Apply Now
@@ -70,13 +87,12 @@ const JobSection = ({ aboutUsRef, contactUsRef }) => {
       <div className="about-contact-section">
         <div className="about-us" ref={aboutUsRef}>
           <h3>About Us</h3>
-          <p>We are a leading company in fiber optic solutions...</p>
+          <p>K Unlimited Corp is a trusted partner of Frontier Communications, specializing in the installation and maintenance of fiber optic networks. Operating in Connecticut, Pennsylvania, New York, Florida, and Texas, we provide reliable, high-speed connectivity for homes and businesses, ensuring seamless communication and growth. Our team is committed to delivering excellence, building networks that keep communities connected and moving forward.</p>
         </div>
         <div className="contact-us" ref={contactUsRef}>
           <h3>Contact Us</h3>
           <p>If you're interested in joining our team or have any questions, feel free to reach out...</p>
           <p>Email: corpkunlimited@gmail.com</p>
-          <p>Phone: +1 123 456 7890</p>
         </div>
       </div>
     </section>

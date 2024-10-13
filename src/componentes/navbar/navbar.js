@@ -1,11 +1,14 @@
 import React from 'react';
 import '../../css/navbar.css';
+import frontier_logo from '../../imgs/solo-logo-frontier-black.png';
+import k_unlimited_logo from '../../imgs/logo-letras-black.png';
 
 const Navbar = ({ scrollToSection }) => {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <h1>Fiber Optics</h1>
+        <img src={k_unlimited_logo} alt="K Unlimited Logo" className="logo logo-small" />
+        <img src={frontier_logo} alt="Frontier Logo" className="logo" />
       </div>
       <ul className="navbar-links">
         <li><a href="#about" onClick={() => scrollToSection('about')}>About</a></li>
