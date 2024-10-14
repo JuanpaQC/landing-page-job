@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../css/navbar.css';
-import frontier_logo from '../../imgs/solo-logo-frontier-black.png';
-import k_unlimited_logo from '../../imgs/logo-letras-black.png';
+import frontier_logo from '../../imgs/frontier-logo.png';
+import k_unlimited_logo from '../../imgs/Whitlogo-removebg-preview.png';
 
 const Navbar = ({ scrollToSection }) => {
   return (
